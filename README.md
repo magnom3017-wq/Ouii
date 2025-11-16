@@ -1,294 +1,486 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>واجهة حسابات التواصل الاجتماعي</title>
-<style>
-  :root {
-    --primary-color: #0066cc;
-    --error-color: #ff4d4d;
-    --shadow: 0 3px 6px rgba(0,0,0,0.16);
-    --transition: all 0.3s ease;
-  }
-  
-  body {
-    font-family: 'Arial', sans-serif;
-    background: #f0f0f0;
-    margin: 20px;
-    line-height: 1.6;
-  }
-  
-  .social-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .icon-wrapper {
-    position: relative;
-  }
-  
-  .icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: var(--transition);
-    border: none;
-    outline: none;
-  }
-  
-  .icon:hover,
-  .icon:focus {
-    transform: scale(1.12);
-  }
-  
-  .icon img {
-    width: 32px;
-    height: 32px;
-  }
-  
-  /* Tooltip window */
-  .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    width: 220px;
-    background-color: #fff;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 12px;
-    position: absolute;
-    top: 80px;
-    right: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    z-index: 10;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.4;
-    transition: var(--transition);
-  }
-  
-  .icon-wrapper:hover .tooltip,
-  .icon-wrapper:focus-within .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .tooltip .link {
-    margin-top: 8px;
-    display: block;
-    color: var(--primary-color);
-    text-decoration: underline;
-    word-wrap: break-word;
-  }
-  
-  .copy-button {
-    margin-top: 8px;
-    padding: 6px 10px;
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: var(--transition);
-  }
-  
-  .copy-button:hover,
-  .copy-button:focus {
-    background-color: #004a99;
-    outline: none;
-  }
-  
-  .error-message {
-    background-color: var(--error-color);
-    color: #fff;
-    padding: 8px;
-    border-radius: 6px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Toast notification */
-  .toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #333;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1000;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: var(--transition);
-  }
-  
-  .toast.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .social-container {
-      gap: 8px;
-    }
-    
-    .icon {
-      width: 56px;
-      height: 56px;
-    }
-    
-    .icon img {
-      width: 28px;
-      height: 28px;
-    }
-    
-    .tooltip {
-      width: 200px;
-      top: 70px;
-    }
-  }
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Øu••ᵏᵃᵐᵃˡ࿐ - Social Media</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8B5CF6;
+            --secondary: #06D6A0;
+            --accent: #EF476F;
+            --dark: #0F0F0F;
+            --darker: #070707;
+            --light: #F8FAFC;
+            --card-light: #FFFFFF;
+            --card-dark: #1A1A1A;
+            --text-light: #2D3748;
+            --text-dark: #E2E8F0;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--light) 0%, #E2E8F0 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            transition: all 0.4s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* الهيدر */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-light);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .dark-mode .icon-btn {
+            background: var(--card-dark);
+            color: var(--secondary);
+        }
+
+        .icon-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        /* شبكة الحسابات */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .social-card {
+            background: var(--card-light);
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .dark-mode .social-card {
+            background: var(--card-dark);
+            border: 2px solid #2D3748;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary);
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 30px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .social-username {
+            color: #64748B;
+            font-size: 14px;
+            direction: ltr;
+        }
+
+        .dark-mode .social-username {
+            color: #94A3B8;
+        }
+
+        /* نافذة المشاركة */
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-content {
+            background: var(--darker);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 2px solid var(--primary);
+        }
+
+        .share-title {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .qrcode-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .qrcode-placeholder {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(45deg, #E2E8F0, #CBD5E0);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748B;
+            font-weight: 600;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .share-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: white;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        .share-app-btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .close-share {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* ألوان الأيقونات */
+        .facebook { background: linear-gradient(135deg, #1877F2, #0D5FBF); }
+        .instagram { background: linear-gradient(135deg, #E4405F, #C13584); }
+        .telegram { background: linear-gradient(135deg, #0088CC, #006699); }
+        .snapchat { background: linear-gradient(135deg, #FFFC00, #FFD700); color: #000 !important; }
+        .tiktok { background: linear-gradient(135deg, #000000, #25F4EE); }
+        .youtube { background: linear-gradient(135deg, #FF0000, #CC0000); }
+        .twitter { background: linear-gradient(135deg, #1DA1F2, #0D8BD9); }
+        .email { background: linear-gradient(135deg, #EA4335, #D14836); }
+        .phone { background: linear-gradient(135deg, #34A853, #2E8B57); }
+
+        @media (max-width: 768px) {
+            .social-grid {
+                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+                gap: 15px;
+            }
+            
+            .social-card {
+                padding: 20px 15px;
+            }
+            
+            .social-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <!-- الهيدر -->
+        <div class="header">
+            <div class="logo">Øu••ᵏᵃᵐᵃˡ࿐</div>
+            <div class="header-buttons">
+                <button class="icon-btn" id="darkModeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="shareBtn">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+        </div>
 
-<div class="social-container">
+        <!-- شبكة الحسابات -->
+        <div class="social-grid">
+            <!-- فيسبوك -->
+            <div class="social-card" onclick="openLink('https://www.facebook.com/share/1BgY11DMQM/')">
+                <div class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-name">فيسبوك</div>
+                <div class="social-username">Kamola</div>
+            </div>
 
-  <!-- فيسبوك -->
-  <div class="icon-wrapper" tabindex="0" aria-label="فيسبوك">
-    <a href="https://www.facebook.com/share/1BgY11DMQM/" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="facebook-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="فيسبوك" />
-    </a>
-    <div class="tooltip" id="facebook-tooltip" role="tooltip">
-      رابط فيسبوك: <a href="https://www.facebook.com/share/1BgY11DMQM/" target="_blank" class="link">https://www.facebook.com/share/1BgY11DMQM/</a>
-      <button class="copy-button" onclick="copyToClipboard('https://www.facebook.com/share/1BgY11DMQM/')">نسخ الرابط</button>
+            <!-- إنستغرام -->
+            <div class="social-card" onclick="openLink('https://www.instagram.com/kamola_463')">
+                <div class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-name">إنستغرام</div>
+                <div class="social-username">@kamola_463</div>
+            </div>
+
+            <!-- تيليجرام -->
+            <div class="social-card" onclick="openLink('https://t.me/ou_kamel')">
+                <div class="social-icon telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </div>
+                <div class="social-name">تيليجرام</div>
+                <div class="social-username">@ou_kamel</div>
+            </div>
+
+            <!-- سناب شات -->
+            <div class="social-card" onclick="openLink('https://www.snapchat.com/add/kamola252903')">
+                <div class="social-icon snapchat">
+                    <i class="fab fa-snapchat-ghost"></i>
+                </div>
+                <div class="social-name">سناب شات</div>
+                <div class="social-username">kamola252903</div>
+            </div>
+
+            <!-- تيك توك -->
+            <div class="social-card" onclick="openLink('https://www.tiktok.com/@kamola.3017')">
+                <div class="social-icon tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <div class="social-name">تيك توك</div>
+                <div class="social-username">@kamola.3017</div>
+            </div>
+
+            <!-- يوتيوب -->
+            <div class="social-card" onclick="openLink('https://www.youtube.com/@kamola3017')">
+                <div class="social-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <div class="social-name">يوتيوب</div>
+                <div class="social-username">@kamola3017</div>
+            </div>
+
+            <!-- تويتر -->
+            <div class="social-card" onclick="showMessage('لا يوجد حساب تويتر حالياً')">
+                <div class="social-icon twitter">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="social-name">تويتر</div>
+                <div class="social-username">غير متوفر</div>
+            </div>
+
+            <!-- البريد الإلكتروني -->
+            <div class="social-card" onclick="copyToClipboard('magnom3017@gmail.com', 'البريد الإلكتروني')">
+                <div class="social-icon email">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="social-name">البريد الإلكتروني</div>
+                <div class="social-username">magnom3017@gmail.com</div>
+            </div>
+
+            <!-- رقم الهاتف -->
+            <div class="social-card" onclick="copyToClipboard('+962776274508', 'رقم الهاتف')">
+                <div class="social-icon phone">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="social-name">رقم الهاتف</div>
+                <div class="social-username">+962776274508</div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- إنستغرام -->
-  <div class="icon-wrapper" tabindex="0" aria-label="إنستغرام">
-    <a href="https://www.instagram.com/kamola_463" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="instagram-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="إنستغرام" />
-    </a>
-    <div class="tooltip" id="instagram-tooltip" role="tooltip">
-      رابط إنستغرام: <a href="https://www.instagram.com/kamola_463" target="_blank" class="link">https://www.instagram.com/kamola_463</a>
-      <button class="copy-button" onclick="copyToClipboard('https://www.instagram.com/kamola_463')">نسخ الرابط</button>
+    <!-- نافذة المشاركة -->
+    <div class="share-modal" id="shareModal">
+        <button class="close-share" onclick="closeShareModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="share-content">
+            <h2 class="share-title">مشاركة الموقع</h2>
+            <div class="qrcode-container">
+                <div class="qrcode-placeholder">
+                    QR Code
+                </div>
+            </div>
+            <div class="share-buttons">
+                <button class="share-btn download-btn" onclick="downloadQR()">
+                    <i class="fas fa-download"></i> تحميل
+                </button>
+                <button class="share-btn copy-btn" onclick="copyLink()">
+                    <i class="fas fa-copy"></i> نسخ
+                </button>
+                <button class="share-btn share-app-btn" onclick="shareToApps()">
+                    <i class="fas fa-share"></i> مشاركة
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- تيليجرام -->
-  <div class="icon-wrapper" tabindex="0" aria-label="تيليجرام">
-    <a href="https://t.me/ou_kamel" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="telegram-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="تيليجرام" />
-    </a>
-    <div class="tooltip" id="telegram-tooltip" role="tooltip">
-      رابط تيليجرام: <a href="https://t.me/ou_kamel" target="_blank" class="link">https://t.me/ou_kamel</a>
-      <button class="copy-button" onclick="copyToClipboard('https://t.me/ou_kamel')">نسخ الرابط</button>
-    </div>
-  </div>
+    <script>
+        // الوضع المظلم
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-  <!-- سناب شات -->
-  <div class="icon-wrapper" tabindex="0" aria-label="سناب شات">
-    <a href="https://www.snapchat.com/add/kamola252903" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="snapchat-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="سناب شات" />
-    </a>
-    <div class="tooltip" id="snapchat-tooltip" role="tooltip">
-      رابط سناب شات: <a href="https://www.snapchat.com/add/kamola252903" target="_blank" class="link">https://www.snapchat.com/add/kamola252903</a>
-      <button class="copy-button" onclick="copyToClipboard('https://www.snapchat.com/add/kamola252903')">نسخ الرابط</button>
-    </div>
-  </div>
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            darkModeToggle.innerHTML = body.classList.contains('dark-mode') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        });
 
-  <!-- تيك توك -->
-  <div class="icon-wrapper" tabindex="0" aria-label="تيك توك">
-    <a href="https://www.tiktok.com/@kamola.3017" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="tiktok-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046124.png" alt="تيك توك" />
-    </a>
-    <div class="tooltip" id="tiktok-tooltip" role="tooltip">
-      رابط تيك توك: <a href="https://www.tiktok.com/@kamola.3017" target="_blank" class="link">https://www.tiktok.com/@kamola.3017</a>
-      <button class="copy-button" onclick="copyToClipboard('https://www.tiktok.com/@kamola.3017')">نسخ الرابط</button>
-    </div>
-  </div>
+        // نافذة المشاركة
+        const shareModal = document.getElementById('shareModal');
+        const shareBtn = document.getElementById('shareBtn');
 
-  <!-- يوتيوب -->
-  <div class="icon-wrapper" tabindex="0" aria-label="يوتيوب">
-    <a href="https://www.youtube.com/@kamola3017" target="_blank" rel="noopener noreferrer" class="icon" aria-describedby="youtube-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="يوتيوب" />
-    </a>
-    <div class="tooltip" id="youtube-tooltip" role="tooltip">
-      رابط يوتيوب: <a href="https://www.youtube.com/@kamola3017" target="_blank" class="link">https://www.youtube.com/@kamola3017</a>
-      <button class="copy-button" onclick="copyToClipboard('https://www.youtube.com/@kamola3017')">نسخ الرابط</button>
-    </div>
-  </div>
+        shareBtn.addEventListener('click', () => {
+            shareModal.style.display = 'flex';
+        });
 
-  <!-- تويتر - رسالة لا يوجد حساب -->
-  <div class="icon-wrapper" tabindex="0" aria-label="تويتر">
-    <div class="icon" style="background:#ff4d4d; cursor: default;" aria-describedby="twitter-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="تويتر" />
-    </div>
-    <div class="tooltip error-message" id="twitter-tooltip" role="alert" style="width: 180px; text-align:center;">
-      لا يوجد حساب تويتر
-    </div>
-  </div>
+        function closeShareModal() {
+            shareModal.style.display = 'none';
+        }
 
-  <!-- البريد الإلكتروني -->
-  <div class="icon-wrapper" tabindex="0" aria-label="البريد الإلكتروني">
-    <button class="icon" onclick="copyToClipboard('magnom3017@gmail.com')" aria-label="نسخ البريد الإلكتروني" aria-describedby="email-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/561/561188.png" alt="البريد الإلكتروني" />
-    </button>
-    <div class="tooltip" id="email-tooltip" role="tooltip">
-      البريد الإلكتروني: <span class="link">magnom3017@gmail.com</span>
-      <button class="copy-button" onclick="copyToClipboard('magnom3017@gmail.com')">نسخ البريد</button>
-    </div>
-  </div>
+        // وظائف أخرى
+        function openLink(url) {
+            window.open(url, '_blank');
+        }
 
-  <!-- رقم الهاتف -->
-  <div class="icon-wrapper" tabindex="0" aria-label="رقم الهاتف">
-    <button class="icon" onclick="copyToClipboard('+962776274508')" aria-label="نسخ رقم الهاتف" aria-describedby="phone-tooltip">
-      <img src="https://cdn-icons-png.flaticon.com/512/15/15874.png" alt="رقم الهاتف" />
-    </button>
-    <div class="tooltip" id="phone-tooltip" role="tooltip">
-      رقم الهاتف: <span class="link">+962776274508</span>
-      <button class="copy-button" onclick="copyToClipboard('+962776274508')">نسخ الرقم</button>
-      <a href="tel:+962776274508" class="link" style="display:block; margin-top:8px; color:#0066cc;">اتصال مباشر</a>
-    </div>
-  </div>
+        function showMessage(message) {
+            alert(message);
+        }
 
-</div>
+        function copyToClipboard(text, type) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`تم نسخ ${type}: ${text}`);
+            });
+        }
 
-<!-- Toast notification -->
-<div class="toast" id="toast"></div>
+        function downloadQR() {
+            alert('سيتم تحميل صورة QR Code');
+            // هنا يمكن إضافة كود لتحميل الصورة فعلياً
+        }
 
-<script>
-  function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function() {
-      showToast('تم نسخ الرابط: ' + text);
-    }, function(err) {
-      showToast('فشل النسخ! حاول مجدداً.');
-    });
-  }
-  
-  function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
-  }
-</script>
+        function copyLink() {
+            const currentUrl = window.location.href;
+            navigator.clipboard.writeText(currentUrl).then(() => {
+                alert('تم نسخ رابط الموقع: ' + currentUrl);
+            });
+        }
 
+        function shareToApps() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Øu••ᵏᵃᵐᵃˡ࿐ - Social Media',
+                    url: window.location.href
+                });
+            } else {
+                alert('ميزة المشاركة غير مدعومة في هذا المتصفح');
+            }
+        }
+
+        // إغلاق نافذة المشاركة بالنقر خارجها
+        window.addEventListener('click', (e) => {
+            if (e.target === shareModal) {
+                closeShareModal();
+            }
+        });
+    </script>
 </body>
 </html>
