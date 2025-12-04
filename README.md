@@ -11,8 +11,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         
         :root {
             --primary: #8B5CF6;
@@ -25,83 +27,116 @@
             --card-dark: #1A1A1A;
             --text-light: #2D3748;
             --text-dark: #E2E8F0;
-            --shadow: 0 10px 25px rgba(0,0,0,0.1);
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --gradient-6: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-            --gradient-7: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
-            --gradient-8: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
-            --gradient-9: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            --shadow: 0 20px 40px rgba(0,0,0,0.15);
+            
+            /* ألوان التدرجات للبطاقات */
+            --gradient-facebook: linear-gradient(135deg, #1877F2, #0D5FBF, #0A49B0);
+            --gradient-instagram: linear-gradient(135deg, #E4405F, #C13584, #833AB4, #5851DB, #405DE6);
+            --gradient-telegram: linear-gradient(135deg, #0088CC, #006699, #005580);
+            --gradient-snapchat: linear-gradient(135deg, #FFFC00, #FFD700, #FFC400);
+            --gradient-tiktok: linear-gradient(135deg, #000000, #25F4EE, #FE2C55);
+            --gradient-youtube: linear-gradient(135deg, #FF0000, #CC0000, #990000);
+            --gradient-twitter: linear-gradient(135deg, #1DA1F2, #0D8BD9, #0A7BC8);
+            --gradient-email: linear-gradient(135deg, #EA4335, #D14836, #FBBC05);
+            --gradient-phone: linear-gradient(135deg, #34A853, #2E8B57, #0D652D);
         }
         
         body {
-            background: linear-gradient(135deg, var(--light) 0%, #E2E8F0 100%);
+            background: linear-gradient(45deg, 
+                #0f0c29, #302b63, #24243e);
             color: var(--text-light);
             min-height: 100vh;
             transition: all 0.4s ease;
             overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+            z-index: -2;
+            animation: backgroundMove 20s infinite alternate;
+        }
+        
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(-50px, -50px) scale(1.1); }
         }
         
         body.dark-mode {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
-            color: var(--text-dark);
+            background: linear-gradient(45deg, 
+                #000000, #0a0a0a, #1a1a1a);
         }
         
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgba(139, 92, 246, 0.1);
+            padding: 30px 0;
+            margin-bottom: 50px;
+            position: relative;
         }
         
         .logo {
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(139, 92, 246, 0.3);
-            animation: logoGlow 3s infinite alternate;
+            text-shadow: 0 0 30px rgba(0, 219, 222, 0.5);
+            animation: logoGlow 3s infinite alternate, float 6s ease-in-out infinite;
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         @keyframes logoGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5)); }
-            100% { filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.8)); }
+            0% { filter: drop-shadow(0 0 10px rgba(0, 219, 222, 0.5)); }
+            100% { filter: drop-shadow(0 0 30px rgba(252, 0, 255, 0.8)); }
         }
         
         .header-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
         
         .icon-btn {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: var(--card-light);
-            border: none;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            color: var(--primary);
-            font-size: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            font-size: 24px;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         
         .icon-btn::before {
@@ -111,7 +146,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: 0.5s;
         }
         
@@ -119,41 +154,68 @@
             left: 100%;
         }
         
-        .dark-mode .icon-btn {
-            background: var(--card-dark);
-            color: var(--secondary);
-        }
-        
         .icon-btn:hover {
-            transform: translateY(-5px) rotate(5deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
         
-        /* شبكة البطاقات المحدثة - صفين */
+        /* شبكة البطاقات - صفين افقيين */
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* صفين */
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(2, 1fr); /* صفين افقيين */
+            gap: 30px;
+            margin-top: 30px;
+            perspective: 1000px;
         }
         
-        /* تصميم البطاقات المميزة */
+        /* تصميم البطاقات ثلاثية الأبعاد */
         .social-card {
-            background: var(--card-light);
-            border-radius: 20px;
-            padding: 25px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
-            min-height: 220px;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transform-style: preserve-3d;
+            animation: waveFloat 8s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* حركة الموجة المختلفة لكل بطاقة */
+        .social-card:nth-child(1) { animation-delay: 0s; }
+        .social-card:nth-child(2) { animation-delay: 0.5s; }
+        .social-card:nth-child(3) { animation-delay: 1s; }
+        .social-card:nth-child(4) { animation-delay: 1.5s; }
+        .social-card:nth-child(5) { animation-delay: 2s; }
+        .social-card:nth-child(6) { animation-delay: 2.5s; }
+        .social-card:nth-child(7) { animation-delay: 3s; }
+        .social-card:nth-child(8) { animation-delay: 3.5s; }
+        .social-card:nth-child(9) { animation-delay: 4s; }
+        
+        @keyframes waveFloat {
+            0%, 100% { 
+                transform: translateY(0) rotateX(0) rotateY(0); 
+            }
+            25% { 
+                transform: translateY(-20px) rotateX(5deg) rotateY(5deg); 
+            }
+            50% { 
+                transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg); 
+            }
+            75% { 
+                transform: translateY(-15px) rotateX(3deg) rotateY(-3deg); 
+            }
         }
         
         /* تأثيرات خلفية البطاقات */
@@ -164,131 +226,115 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: conic-gradient(
+                from 0deg,
+                transparent,
+                rgba(255,255,255,0.1),
+                transparent
+            );
+            animation: rotate 10s linear infinite;
         }
         
-        .social-card:hover::before {
-            opacity: 1;
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .social-card:nth-child(1) {
-            background: var(--gradient-1);
-            animation: float 6s ease-in-out infinite;
+        /* خلفية داخلية للبطاقات */
+        .social-card::after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            background: inherit;
+            border-radius: 20px;
+            z-index: -1;
         }
         
-        .social-card:nth-child(2) {
-            background: var(--gradient-2);
-            animation: float 6s ease-in-out infinite 0.5s;
-        }
+        /* تطبيق التدرجات الخاصة لكل بطاقة */
+        .facebook-card { background: var(--gradient-facebook); }
+        .instagram-card { background: var(--gradient-instagram); }
+        .telegram-card { background: var(--gradient-telegram); }
+        .snapchat-card { background: var(--gradient-snapchat); }
+        .tiktok-card { background: var(--gradient-tiktok); }
+        .youtube-card { background: var(--gradient-youtube); }
+        .twitter-card { background: var(--gradient-twitter); }
+        .email-card { background: var(--gradient-email); }
+        .phone-card { background: var(--gradient-phone); }
         
-        .social-card:nth-child(3) {
-            background: var(--gradient-3);
-            animation: float 6s ease-in-out infinite 1s;
-        }
-        
-        .social-card:nth-child(4) {
-            background: var(--gradient-4);
-            animation: float 6s ease-in-out infinite 1.5s;
-        }
-        
-        .social-card:nth-child(5) {
-            background: var(--gradient-5);
-            animation: float 6s ease-in-out infinite 2s;
-        }
-        
-        .social-card:nth-child(6) {
-            background: var(--gradient-6);
-            animation: float 6s ease-in-out infinite 2.5s;
-        }
-        
-        .social-card:nth-child(7) {
-            background: var(--gradient-7);
-            animation: float 6s ease-in-out infinite 3s;
-        }
-        
-        .social-card:nth-child(8) {
-            background: var(--gradient-8);
-            animation: float 6s ease-in-out infinite 3.5s;
-        }
-        
-        .social-card:nth-child(9) {
-            background: var(--gradient-9);
-            animation: float 6s ease-in-out infinite 4s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
-        
-        .dark-mode .social-card {
-            border: 2px solid rgba(255,255,255,0.1);
-        }
-        
+        /* تأثير المرور */
         .social-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            border-color: rgba(255,255,255,0.3);
-            z-index: 10;
+            transform: translateY(-30px) scale(1.08) rotateX(10deg) rotateY(10deg);
+            box-shadow: 
+                0 40px 80px rgba(0,0,0,0.4),
+                0 0 60px rgba(255,255,255,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            z-index: 100;
         }
         
-        /* الأيقونات المميزة */
+        /* الأيقونات ثلاثية الأبعاد */
         .social-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 35px;
+            margin: 0 auto 25px;
+            font-size: 45px;
             color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            transition: all 0.4s ease;
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.3),
+                inset 0 5px 15px rgba(255,255,255,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             z-index: 2;
-            border: 3px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255,255,255,0.2);
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
         }
         
         .social-card:hover .social-icon {
-            transform: scale(1.2) rotate(360deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transform: scale(1.3) rotateY(360deg);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.4),
+                0 0 40px rgba(255,255,255,0.3);
         }
         
         .social-icon i {
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
+        /* النصوص */
         .social-name {
-            font-weight: 700;
-            font-size: 18px;
-            margin-bottom: 5px;
+            font-weight: 800;
+            font-size: 24px;
+            margin-bottom: 10px;
             color: white;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
             position: relative;
             z-index: 2;
+            letter-spacing: 1px;
         }
         
         .social-username {
             color: rgba(255,255,255,0.9);
-            font-size: 14px;
+            font-size: 16px;
             direction: ltr;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
             position: relative;
             z-index: 2;
-            background: rgba(0,0,0,0.2);
-            padding: 3px 10px;
-            border-radius: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
             display: inline-block;
-            margin-top: 5px;
+            margin-top: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* نافذة المشاركة */
+        /* النافذة المنبثقة الجديدة */
         .share-modal {
             display: none;
             position: fixed;
@@ -296,243 +342,240 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 9999;
             align-items: center;
             justify-content: center;
             overflow: auto;
+            backdrop-filter: blur(10px);
         }
         
         .share-content {
-            background: var(--darker);
-            border-radius: 25px;
-            padding: 40px;
+            background: linear-gradient(135deg, 
+                rgba(20, 20, 40, 0.95), 
+                rgba(30, 30, 60, 0.95));
+            border-radius: 30px;
+            padding: 50px;
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
             height: auto;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            border: 2px solid var(--primary);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.1);
+            border: 2px solid transparent;
             position: relative;
             z-index: 10000;
-            animation: modalAppear 0.5s ease-out;
+            animation: modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .share-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ff0000, #ff9900, #ffff00, #00ff00, 
+                #00ffff, #0000ff, #9900ff, #ff00ff);
+            border-radius: 32px;
+            z-index: -1;
+            animation: borderRotate 5s linear infinite;
+            filter: blur(10px);
+        }
+        
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         @keyframes modalAppear {
-            0% { transform: scale(0.8) translateY(50px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
+            0% { transform: perspective(1000px) rotateY(90deg) scale(0.5); opacity: 0; }
+            100% { transform: perspective(1000px) rotateY(0deg) scale(1); opacity: 1; }
         }
         
         .share-title {
             color: white;
-            font-size: 24px;
-            margin-bottom: 25px;
-            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 30px;
+            font-weight: 800;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .qrcode-container {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
+        /* تصميم QR Code ثلاثي الأبعاد */
+        .qr-container-3d {
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,0.1), 
+                rgba(255,255,255,0.05));
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
             display: inline-block;
-            min-width: 200px;
-            min-height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: perspective(500px) rotateX(10deg);
+            animation: qrFloat 4s ease-in-out infinite;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+        @keyframes qrFloat {
+            0%, 100% { transform: perspective(500px) rotateX(10deg) translateY(0); }
+            50% { transform: perspective(500px) rotateX(10deg) translateY(-10px); }
+        }
+        
+        .qr-header {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00dbde, #fc00ff);
+            padding: 10px 30px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         
         #modalQRCode {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 2;
         }
         
-        .share-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 25px;
+        /* تصميم خاص للهاتف والبريد */
+        .simple-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
         }
         
-        .share-btn {
-            padding: 15px;
+        .action-btn {
+            padding: 20px;
             border: none;
-            border-radius: 12px;
-            font-weight: 600;
+            border-radius: 15px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 16px;
-            width: 100%;
+            gap: 10px;
+            font-size: 18px;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
-        .share-btn::after {
+        .action-btn::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
         }
         
-        .share-btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
+        .action-btn:hover::before {
+            left: 100%;
         }
         
-        @keyframes ripple {
-            0% { transform: scale(0, 0); opacity: 0.5; }
-            100% { transform: scale(20, 20); opacity: 0; }
-        }
-        
-        .download-btn {
-            background: linear-gradient(135deg, var(--primary), #7c3aed);
-            color: white;
-        }
-        
-        .copy-btn {
-            background: linear-gradient(135deg, var(--accent), #d12e5a);
-            color: white;
-        }
-        
-        .share-app-btn {
-            background: linear-gradient(135deg, var(--secondary), #05b887);
-            color: white;
-        }
-        
-        .phone-btn {
+        .call-btn {
             background: linear-gradient(135deg, #34A853, #2E8B57);
-            color: white;
         }
         
-        .email-btn {
+        .copy-btn-simple {
+            background: linear-gradient(135deg, #EF476F, #D12E5A);
+        }
+        
+        .email-btn-simple {
             background: linear-gradient(135deg, #EA4335, #D14836);
-            color: white;
         }
         
-        .share-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .action-btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .action-btn i {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
         }
         
         .close-share {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background: none;
+            top: 25px;
+            left: 25px;
+            background: linear-gradient(135deg, #EF476F, #D12E5A);
             border: none;
             color: white;
             font-size: 24px;
             cursor: pointer;
             z-index: 10001;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         
         .close-share:hover {
-            transform: rotate(90deg);
-        }
-        
-        /* تصميم خاص للهاتف والبريد الإلكتروني */
-        .phone-modal .share-buttons,
-        .email-modal .share-buttons {
-            grid-template-columns: 1fr 1fr;
-            display: grid;
-            gap: 15px;
-        }
-        
-        .phone-modal .qrcode-container,
-        .email-modal .qrcode-container {
-            display: none;
-        }
-        
-        /* ألوان وسائل التواصل */
-        .facebook { background: linear-gradient(135deg, #1877F2, #0D5FBF); }
-        .instagram { background: linear-gradient(135deg, #E4405F, #C13584, #F77737); }
-        .telegram { background: linear-gradient(135deg, #0088CC, #006699); }
-        .snapchat { background: linear-gradient(135deg, #FFFC00, #FFD700); }
-        .tiktok { background: linear-gradient(135deg, #000000, #25F4EE, #FE2C55); }
-        .youtube { background: linear-gradient(135deg, #FF0000, #CC0000); }
-        .twitter { background: linear-gradient(135deg, #1DA1F2, #0D8BD9); }
-        .email-card { background: linear-gradient(135deg, #EA4335, #D14836, #FBBC05); }
-        .phone-card { background: linear-gradient(135deg, #34A853, #2E8B57, #0D652D); }
-        
-        /* التأثيرات النصية */
-        .social-card .highlight {
-            display: inline-block;
-            position: relative;
-            color: white;
-            font-weight: bold;
-            padding: 0 5px;
-        }
-        
-        .social-card .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: white;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .social-card:hover .highlight::after {
-            transform: scaleX(1);
-        }
-        
-        /* تأثيرات إضافية للبطاقات */
-        .social-card .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
         
         /* تصميم متجاوب */
         @media (max-width: 768px) {
             .social-grid {
-                grid-template-columns: 1fr; /* عمود واحد على الهواتف */
-                gap: 15px;
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .logo {
-                font-size: 24px;
+                font-size: 28px;
             }
             
             .social-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 30px;
+                width: 80px;
+                height: 80px;
+                font-size: 35px;
             }
             
             .social-card {
-                padding: 20px 15px;
-                min-height: 200px;
+                padding: 30px 20px;
+                min-height: 280px;
+            }
+            
+            .simple-buttons {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -549,64 +592,64 @@
         
         <div class="social-grid">
             <!-- فيسبوك -->
-            <div class="social-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook" data-type="social">
-                <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
+            <div class="social-card facebook-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook" data-type="social">
+                <div class="social-icon"><i class="fab fa-facebook-f"></i></div>
                 <div class="social-name">فيسبوك</div>
                 <div class="social-username">Kamola</div>
             </div>
             
             <!-- إنستغرام -->
-            <div class="social-card" data-name="إنستغرام" data-link="https://www.instagram.com/kamola_463" data-icon="instagram" data-type="social">
-                <div class="social-icon instagram"><i class="fab fa-instagram"></i></div>
+            <div class="social-card instagram-card" data-name="إنستغرام" data-link="https://www.instagram.com/kamola_463" data-icon="instagram" data-type="social">
+                <div class="social-icon"><i class="fab fa-instagram"></i></div>
                 <div class="social-name">إنستغرام</div>
                 <div class="social-username">@kamola_463</div>
             </div>
             
             <!-- تيليجرام -->
-            <div class="social-card" data-name="تيليجرام" data-link="https://t.me/ou_kamel" data-icon="telegram" data-type="social">
-                <div class="social-icon telegram"><i class="fab fa-telegram-plane"></i></div>
+            <div class="social-card telegram-card" data-name="تيليجرام" data-link="https://t.me/ou_kamel" data-icon="telegram" data-type="social">
+                <div class="social-icon"><i class="fab fa-telegram-plane"></i></div>
                 <div class="social-name">تيليجرام</div>
                 <div class="social-username">@ou_kamel</div>
             </div>
             
             <!-- سناب شات -->
-            <div class="social-card" data-name="سناب شات" data-link="https://www.snapchat.com/add/kamola252903" data-icon="snapchat" data-type="social">
-                <div class="social-icon snapchat"><i class="fab fa-snapchat-ghost"></i></div>
+            <div class="social-card snapchat-card" data-name="سناب شات" data-link="https://www.snapchat.com/add/kamola252903" data-icon="snapchat" data-type="social">
+                <div class="social-icon"><i class="fab fa-snapchat-ghost"></i></div>
                 <div class="social-name">سناب شات</div>
                 <div class="social-username">kamola252903</div>
             </div>
             
             <!-- تيك توك -->
-            <div class="social-card" data-name="تيك توك" data-link="https://www.tiktok.com/@kamola.3017" data-icon="tiktok" data-type="social">
-                <div class="social-icon tiktok"><i class="fab fa-tiktok"></i></div>
+            <div class="social-card tiktok-card" data-name="تيك توك" data-link="https://www.tiktok.com/@kamola.3017" data-icon="tiktok" data-type="social">
+                <div class="social-icon"><i class="fab fa-tiktok"></i></div>
                 <div class="social-name">تيك توك</div>
                 <div class="social-username">@kamola.3017</div>
             </div>
             
             <!-- يوتيوب -->
-            <div class="social-card" data-name="يوتيوب" data-link="https://www.youtube.com/@kamola3017" data-icon="youtube" data-type="social">
-                <div class="social-icon youtube"><i class="fab fa-youtube"></i></div>
+            <div class="social-card youtube-card" data-name="يوتيوب" data-link="https://www.youtube.com/@kamola3017" data-icon="youtube" data-type="social">
+                <div class="social-icon"><i class="fab fa-youtube"></i></div>
                 <div class="social-name">يوتيوب</div>
                 <div class="social-username">@kamola3017</div>
             </div>
             
             <!-- تويتر -->
-            <div class="social-card" data-name="تويتر" data-link="https://x.com/3017Kamola44307?t=107y45_c29JA1E-ClTzg_A&s=09" data-icon="twitter" data-type="social">
-                <div class="social-icon twitter"><i class="fab fa-twitter"></i></div>
+            <div class="social-card twitter-card" data-name="تويتر" data-link="https://x.com/3017Kamola44307?t=107y45_c29JA1E-ClTzg_A&s=09" data-icon="twitter" data-type="social">
+                <div class="social-icon"><i class="fab fa-twitter"></i></div>
                 <div class="social-name">تويتر</div>
                 <div class="social-username">@3017Kamola44307</div>
             </div>
             
             <!-- البريد الإلكتروني -->
-            <div class="social-card" data-name="البريد الإلكتروني" data-link="mailto:magnom3017@gmail.com" data-icon="email" data-type="email">
-                <div class="social-icon email-card"><i class="fas fa-envelope"></i></div>
+            <div class="social-card email-card" data-name="البريد الإلكتروني" data-link="mailto:magnom3017@gmail.com" data-icon="email" data-type="email">
+                <div class="social-icon"><i class="fas fa-envelope"></i></div>
                 <div class="social-name">البريد الإلكتروني</div>
                 <div class="social-username">magnom3017@gmail.com</div>
             </div>
             
             <!-- رقم الهاتف -->
-            <div class="social-card" data-name="رقم الهاتف" data-link="tel:+962776274508" data-icon="phone" data-type="phone">
-                <div class="social-icon phone-card"><i class="fas fa-phone"></i></div>
+            <div class="social-card phone-card" data-name="رقم الهاتف" data-link="tel:+962776274508" data-icon="phone" data-type="phone">
+                <div class="social-icon"><i class="fas fa-phone"></i></div>
                 <div class="social-name">رقم الهاتف</div>
                 <div class="social-username">+962 776 274508</div>
             </div>
@@ -618,11 +661,8 @@
         <button class="close-share" id="closeShareBtn"><i class="fas fa-times"></i></button>
         <div class="share-content" id="shareContent">
             <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
-            <div class="qrcode-container" id="qrContainer">
-                <div id="modalQRCode"></div>
-            </div>
-            <div class="share-buttons" id="actionButtons">
-                <!-- الأزرار ستضاف ديناميكياً -->
+            <div id="qrContainer">
+                <!-- محتوى QR Code أو الأزرار سيتم إضافته ديناميكياً -->
             </div>
         </div>
     </div>
@@ -645,15 +685,32 @@
         // نافذة المشاركة
         const shareModal = document.getElementById('shareModal');
         const modalAppName = document.getElementById('modalAppName');
-        const modalQRCodeElement = document.getElementById('modalQRCode');
-        const shareContent = document.getElementById('shareContent');
         const qrContainer = document.getElementById('qrContainer');
-        const actionButtons = document.getElementById('actionButtons');
         const closeShareBtn = document.getElementById('closeShareBtn');
         
         let currentQRCode = null;
         let currentLink = '';
         let currentType = '';
+        let currentName = '';
+        
+        // إضافة تأثيرات للبطاقات عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.social-card');
+            cards.forEach((card, index) => {
+                // تأخير لكل بطاقة لتأثير تسلسلي
+                card.style.animationDelay = `${index * 0.2}s`;
+                
+                // إضافة تأثيرات CSS عند التحميل
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px) scale(0.8)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0) scale(1)';
+                }, index * 100);
+            });
+        });
         
         // فتح النافذة عند النقر على البطاقات
         document.querySelectorAll('.social-card').forEach(card => {
@@ -661,129 +718,220 @@
                 const name = card.getAttribute('data-name');
                 const link = card.getAttribute('data-link');
                 const type = card.getAttribute('data-type');
+                const iconClass = card.querySelector('.social-icon i').className;
                 
                 modalAppName.textContent = name;
                 currentLink = link;
                 currentType = type;
+                currentName = name;
                 
                 // إعداد واجهة النافذة حسب النوع
-                setupModal(type, link, name);
+                setupModal(type, link, name, iconClass);
                 
                 shareModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+                
+                // تأثير ظهور النافذة
+                const shareContent = document.querySelector('.share-content');
+                shareContent.style.animation = 'none';
+                setTimeout(() => {
+                    shareContent.style.animation = 'modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                }, 10);
             });
         });
         
-        function setupModal(type, link, name) {
-            // مسح الأزرار السابقة
-            actionButtons.innerHTML = '';
+        function setupModal(type, link, name, iconClass) {
+            // مسح المحتوى السابق
+            qrContainer.innerHTML = '';
             
             if (type === 'phone') {
                 // واجهة الهاتف: زر اتصال وزر نسخ فقط
-                qrContainer.style.display = 'none';
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'simple-buttons';
                 
                 const callBtn = document.createElement('button');
-                callBtn.className = 'share-btn phone-btn';
-                callBtn.innerHTML = '<i class="fas fa-phone"></i> اتصال';
+                callBtn.className = 'action-btn call-btn';
+                callBtn.innerHTML = `
+                    <i class="fas fa-phone"></i>
+                    <span>اتصال</span>
+                    <small>${link.replace('tel:', '')}</small>
+                `;
                 callBtn.onclick = () => window.open(link, '_self');
                 
                 const copyBtn = document.createElement('button');
-                copyBtn.className = 'share-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ الرقم';
+                copyBtn.className = 'action-btn copy-btn-simple';
+                copyBtn.innerHTML = `
+                    <i class="fas fa-copy"></i>
+                    <span>نسخ الرقم</span>
+                `;
                 copyBtn.onclick = () => {
                     const phoneNumber = link.replace('tel:', '');
                     navigator.clipboard.writeText(phoneNumber).then(() => {
-                        alert('تم نسخ الرقم: ' + phoneNumber);
+                        showNotification('تم نسخ الرقم بنجاح!');
                     });
                 };
                 
-                actionButtons.appendChild(callBtn);
-                actionButtons.appendChild(copyBtn);
+                buttonsDiv.appendChild(callBtn);
+                buttonsDiv.appendChild(copyBtn);
+                qrContainer.appendChild(buttonsDiv);
                 
             } else if (type === 'email') {
                 // واجهة البريد الإلكتروني: زر إرسال وزر نسخ فقط
-                qrContainer.style.display = 'none';
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'simple-buttons';
                 
                 const emailBtn = document.createElement('button');
-                emailBtn.className = 'share-btn email-btn';
-                emailBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال بريد';
+                emailBtn.className = 'action-btn email-btn-simple';
+                emailBtn.innerHTML = `
+                    <i class="fas fa-paper-plane"></i>
+                    <span>إرسال بريد</span>
+                    <small>${link.replace('mailto:', '')}</small>
+                `;
                 emailBtn.onclick = () => window.open(link, '_self');
                 
                 const copyBtn = document.createElement('button');
-                copyBtn.className = 'share-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ البريد';
+                copyBtn.className = 'action-btn copy-btn-simple';
+                copyBtn.innerHTML = `
+                    <i class="fas fa-copy"></i>
+                    <span>نسخ البريد</span>
+                `;
                 copyBtn.onclick = () => {
                     const email = link.replace('mailto:', '');
                     navigator.clipboard.writeText(email).then(() => {
-                        alert('تم نسخ البريد: ' + email);
+                        showNotification('تم نسخ البريد الإلكتروني بنجاح!');
                     });
                 };
                 
-                actionButtons.appendChild(emailBtn);
-                actionButtons.appendChild(copyBtn);
+                buttonsDiv.appendChild(emailBtn);
+                buttonsDiv.appendChild(copyBtn);
+                qrContainer.appendChild(buttonsDiv);
                 
             } else {
-                // واجهة وسائل التواصل: QR Code وأزرار كاملة
-                qrContainer.style.display = 'inline-block';
+                // واجهة وسائل التواصل: QR Code ثلاثي الأبعاد مع صورة التطبيق
+                const qrWrapper = document.createElement('div');
+                qrWrapper.className = 'qr-container-3d';
+                
+                const qrHeader = document.createElement('div');
+                qrHeader.className = 'qr-header';
+                qrHeader.textContent = name;
+                qrWrapper.appendChild(qrHeader);
+                
+                const qrCodeDiv = document.createElement('div');
+                qrCodeDiv.id = 'modalQRCode';
+                qrWrapper.appendChild(qrCodeDiv);
                 
                 // إنشاء QR Code
-                modalQRCodeElement.innerHTML = '';
-                currentQRCode = new QRCode(modalQRCodeElement, {
-                    text: link,
-                    width: 200,
-                    height: 200,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
+                setTimeout(() => {
+                    qrCodeDiv.innerHTML = '';
+                    currentQRCode = new QRCode(qrCodeDiv, {
+                        text: link,
+                        width: 200,
+                        height: 200,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                    
+                    // إضافة أيقونة التطبيق فوق QR Code
+                    const appIcon = document.createElement('div');
+                    appIcon.style.position = 'absolute';
+                    appIcon.style.top = '50%';
+                    appIcon.style.left = '50%';
+                    appIcon.style.transform = 'translate(-50%, -50%)';
+                    appIcon.style.width = '50px';
+                    appIcon.style.height = '50px';
+                    appIcon.style.background = 'rgba(255,255,255,0.9)';
+                    appIcon.style.borderRadius = '10px';
+                    appIcon.style.display = 'flex';
+                    appIcon.style.alignItems = 'center';
+                    appIcon.style.justifyContent = 'center';
+                    appIcon.style.fontSize = '25px';
+                    appIcon.style.zIndex = '10';
+                    appIcon.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+                    
+                    const iconElement = document.createElement('i');
+                    iconElement.className = iconClass;
+                    appIcon.appendChild(iconElement);
+                    
+                    qrCodeDiv.appendChild(appIcon);
+                }, 100);
                 
-                // أزرار وسائل التواصل
+                qrContainer.appendChild(qrWrapper);
+                
+                // أزرار الإجراءات
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'simple-buttons';
+                buttonsDiv.style.marginTop = '30px';
+                
                 const downloadBtn = document.createElement('button');
-                downloadBtn.className = 'share-btn download-btn';
-                downloadBtn.innerHTML = '<i class="fas fa-download"></i> تحميل QR Code';
+                downloadBtn.className = 'action-btn call-btn';
+                downloadBtn.innerHTML = `
+                    <i class="fas fa-download"></i>
+                    <span>تحميل QR</span>
+                `;
                 downloadBtn.onclick = () => {
                     if (currentQRCode) {
-                        const canvas = modalQRCodeElement.querySelector('canvas');
-                        if (canvas) {
-                            const linkElement = document.createElement('a');
-                            linkElement.download = `QR-${name}.png`;
-                            linkElement.href = canvas.toDataURL();
-                            linkElement.click();
-                        }
+                        setTimeout(() => {
+                            const canvas = qrCodeDiv.querySelector('canvas');
+                            if (canvas) {
+                                const linkElement = document.createElement('a');
+                                linkElement.download = `QR-${name}.png`;
+                                linkElement.href = canvas.toDataURL();
+                                linkElement.click();
+                                showNotification('تم تحميل QR Code بنجاح!');
+                            }
+                        }, 500);
                     }
                 };
                 
                 const copyBtn = document.createElement('button');
-                copyBtn.className = 'share-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ الرابط';
+                copyBtn.className = 'action-btn copy-btn-simple';
+                copyBtn.innerHTML = `
+                    <i class="fas fa-copy"></i>
+                    <span>نسخ الرابط</span>
+                `;
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(link).then(() => {
-                        alert('تم نسخ الرابط: ' + link);
+                        showNotification('تم نسخ الرابط بنجاح!');
                     });
                 };
                 
                 const openBtn = document.createElement('button');
-                openBtn.className = 'share-btn share-app-btn';
-                openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> فتح التطبيق';
+                openBtn.className = 'action-btn email-btn-simple';
+                openBtn.innerHTML = `
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>فتح التطبيق</span>
+                `;
                 openBtn.onclick = () => window.open(link, '_blank');
                 
-                actionButtons.appendChild(downloadBtn);
-                actionButtons.appendChild(copyBtn);
-                actionButtons.appendChild(openBtn);
+                buttonsDiv.appendChild(downloadBtn);
+                buttonsDiv.appendChild(copyBtn);
+                buttonsDiv.appendChild(openBtn);
+                qrContainer.appendChild(buttonsDiv);
             }
         }
         
         // زر إغلاق النافذة
         closeShareBtn.addEventListener('click', () => {
-            shareModal.style.display = 'none';
-            document.body.style.overflow = '';
+            const shareContent = document.querySelector('.share-content');
+            shareContent.style.animation = 'modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) reverse';
+            
+            setTimeout(() => {
+                shareModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 500);
         });
         
         // إغلاق النافذة عند النقر خارجها
         window.addEventListener('click', (e) => {
             if (e.target === shareModal) {
-                shareModal.style.display = 'none';
-                document.body.style.overflow = '';
+                const shareContent = document.querySelector('.share-content');
+                shareContent.style.animation = 'modalAppear 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) reverse';
+                
+                setTimeout(() => {
+                    shareModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 500);
             }
         });
         
@@ -797,16 +945,64 @@
                 });
             } else {
                 navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert('تم نسخ رابط الموقع إلى الحافظة');
+                    showNotification('تم نسخ رابط الموقع إلى الحافظة');
                 });
             }
         });
         
-        // تأثيرات إضافية للبطاقات عند التحميل
-        document.addEventListener('DOMContentLoaded', () => {
+        // وظيفة لعرض الإشعارات
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.background = 'linear-gradient(135deg, #00dbde, #fc00ff)';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '10px';
+            notification.style.zIndex = '10000';
+            notification.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+            notification.style.transform = 'translateY(100px)';
+            notification.style.opacity = '0';
+            notification.style.transition = 'all 0.3s ease';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateY(0)';
+                notification.style.opacity = '1';
+            }, 10);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateY(100px)';
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // تأثيرات إضافية للصفحة
+        document.addEventListener('mousemove', (e) => {
             const cards = document.querySelectorAll('.social-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 25;
+                const rotateX = (centerY - y) / 25;
+                
+                card.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)
+                    translateY(${Math.sin(Date.now() / 1000 + Array.from(cards).indexOf(card)) * 10}px)
+                `;
             });
         });
     </script>
