@@ -93,7 +93,7 @@
             transform: translateY(-5px);
         }
         
-        /* ✅ تصميم شبكة بطاقات 2-2-2-2-1 */
+        /* تخطيط 2-2-2-2-1 */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -101,34 +101,28 @@
             margin-top: 20px;
         }
         
-        /* البطاقات الأولى: 2 بطاقات */
         .social-grid .social-card:nth-child(-n+2) {
             grid-column: span 2;
         }
         
-        /* البطاقات الثانية: 2 بطاقات */
         .social-grid .social-card:nth-child(n+3):nth-child(-n+4) {
             grid-column: span 2;
         }
         
-        /* البطاقات الثالثة: 2 بطاقات */
         .social-grid .social-card:nth-child(n+5):nth-child(-n+6) {
             grid-column: span 2;
         }
         
-        /* البطاقات الرابعة: 2 بطاقات */
         .social-grid .social-card:nth-child(n+7):nth-child(-n+8) {
             grid-column: span 2;
         }
         
-        /* البطاقة الأخيرة: بطاقة واحدة واسعة */
         .social-grid .social-card:nth-child(9) {
             grid-column: 1 / -1;
             max-width: 50%;
             margin: 0 auto;
         }
         
-        /* تصميم متجاوب */
         @media (max-width: 1200px) {
             .social-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -154,7 +148,7 @@
             }
         }
         
-        /* ✅ تصميم البطاقات ثلاثية الأبعاد ملونة */
+        /* تصميم البطاقات ثلاثية الأبعاد */
         .social-card {
             background: linear-gradient(135deg, 
                 rgba(255, 255, 255, 0.95) 0%,
@@ -185,7 +179,6 @@
             border: 3px solid rgba(255,255,255,0.1);
         }
         
-        /* ✅ تأثيرات ثلاثية الأبعاد للبطاقات */
         .social-card::before {
             content: '';
             position: absolute;
@@ -219,7 +212,6 @@
                 inset 0 2px 0 rgba(255,255,255,0.6);
         }
         
-        /* ✅ حركة الطفو المختلفة لكل مجموعة */
         .social-card:nth-child(odd) {
             animation: float 8s ease-in-out infinite;
         }
@@ -256,7 +248,6 @@
             }
         }
         
-        /* ✅ الأيقونات ثلاثية الأبعاد */
         .social-icon {
             width: 100px;
             height: 100px;
@@ -374,7 +365,6 @@
                 rgba(255,255,255,0.05));
         }
         
-        /* ✅ ألوان وسائل التواصل ثلاثية الأبعاد */
         .facebook { 
             background: linear-gradient(135deg, 
                 #1877F2 0%, 
@@ -438,93 +428,8 @@
                 #2E8B57 50%,
                 #34A853 100%); 
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">Øu••ᵏᵃᵐᵃˡ࿐</div>
-            <div class="header-buttons">
-                <button class="icon-btn" id="darkModeToggle"><i class="fas fa-moon"></i></button>
-                <button class="icon-btn" id="shareBtn"><i class="fas fa-share-alt"></i></button>
-            </div>
-        </div>
         
-        <!-- ✅ البطاقات مرتبة 2-2-2-2-1 -->
-        <div class="social-grid">
-            <!-- المجموعة الأولى: بطاقتين -->
-            <div class="social-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook" data-type="social">
-                <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
-                <div class="social-name">فيسبوك</div>
-                <div class="social-username">Kamola</div>
-            </div>
-            
-            <div class="social-card" data-name="إنستغرام" data-link="https://www.instagram.com/kamola_463" data-icon="instagram" data-type="social">
-                <div class="social-icon instagram"><i class="fab fa-instagram"></i></div>
-                <div class="social-name">إنستغرام</div>
-                <div class="social-username">@kamola_463</div>
-            </div>
-            
-            <!-- المجموعة الثانية: بطاقتين -->
-            <div class="social-card" data-name="تيليجرام" data-link="https://t.me/ou_kamel" data-icon="telegram" data-type="social">
-                <div class="social-icon telegram"><i class="fab fa-telegram-plane"></i></div>
-                <div class="social-name">تيليجرام</div>
-                <div class="social-username">@ou_kamel</div>
-            </div>
-            
-            <div class="social-card" data-name="سناب شات" data-link="https://www.snapchat.com/add/kamola252903" data-icon="snapchat" data-type="social">
-                <div class="social-icon snapchat"><i class="fab fa-snapchat-ghost"></i></div>
-                <div class="social-name">سناب شات</div>
-                <div class="social-username">kamola252903</div>
-            </div>
-            
-            <!-- المجموعة الثالثة: بطاقتين -->
-            <div class="social-card" data-name="تيك توك" data-link="https://www.tiktok.com/@kamola.3017" data-icon="tiktok" data-type="social">
-                <div class="social-icon tiktok"><i class="fab fa-tiktok"></i></div>
-                <div class="social-name">تيك توك</div>
-                <div class="social-username">@kamola.3017</div>
-            </div>
-            
-            <div class="social-card" data-name="يوتيوب" data-link="https://www.youtube.com/@kamola3017" data-icon="youtube" data-type="social">
-                <div class="social-icon youtube"><i class="fab fa-youtube"></i></div>
-                <div class="social-name">يوتيوب</div>
-                <div class="social-username">@kamola3017</div>
-            </div>
-            
-            <!-- المجموعة الرابعة: بطاقتين -->
-            <div class="social-card" data-name="تويتر" data-link="https://x.com/3017Kamola44307?t=107y45_c29JA1E-ClTzg_A&s=09" data-icon="twitter" data-type="social">
-                <div class="social-icon twitter"><i class="fab fa-twitter"></i></div>
-                <div class="social-name">تويتر</div>
-                <div class="social-username">@3017Kamola44307</div>
-            </div>
-            
-            <div class="social-card" data-name="البريد الإلكتروني" data-link="mailto:magnom3017@gmail.com" data-icon="email" data-type="email">
-                <div class="social-icon email"><i class="fas fa-envelope"></i></div>
-                <div class="social-name">البريد الإلكتروني</div>
-                <div class="social-username">magnom3017@gmail.com</div>
-            </div>
-            
-            <!-- المجموعة الخامسة: بطاقة واحدة واسعة -->
-            <div class="social-card" data-name="رقم الهاتف" data-link="tel:+962776274508" data-icon="phone" data-type="phone">
-                <div class="social-icon phone"><i class="fas fa-phone"></i></div>
-                <div class="social-name">رقم الهاتف</div>
-                <div class="social-username">+962 776 274508</div>
-            </div>
-        </div>
-    </div>
-        <!-- نافذة المشاركة -->
-    <div class="share-modal" id="shareModal">
-        <button class="close-share" id="closeShareBtn"><i class="fas fa-times"></i></button>
-        <div class="share-content" id="shareContent">
-            <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-    
-    <div class="notification" id="notification"></div>
-    
-    <style>
-        /* النافذة المنبثقة */
+        /* نوافذ منبثقة */
         .share-modal {
             display: none;
             position: fixed;
@@ -728,7 +633,6 @@
             box-shadow: 0 12px 30px rgba(209, 46, 90, 0.6);
         }
         
-        /* إشعارات ثلاثية الأبعاد */
         .notification {
             position: fixed;
             bottom: 30px;
@@ -775,6 +679,90 @@
             font-weight: bold;
         }
     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Øu••ᵏᵃᵐᵃˡ࿐</div>
+            <div class="header-buttons">
+                <button class="icon-btn" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+                <button class="icon-btn" id="shareBtn"><i class="fas fa-share-alt"></i></button>
+            </div>
+        </div>
+        
+        <!-- البطاقات مرتبة 2-2-2-2-1 -->
+        <div class="social-grid">
+            <!-- المجموعة الأولى: بطاقتين -->
+            <div class="social-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook" data-type="social">
+                <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
+                <div class="social-name">فيسبوك</div>
+                <div class="social-username">Kamola</div>
+            </div>
+            
+            <div class="social-card" data-name="إنستغرام" data-link="https://www.instagram.com/kamola_463" data-icon="instagram" data-type="social">
+                <div class="social-icon instagram"><i class="fab fa-instagram"></i></div>
+                <div class="social-name">إنستغرام</div>
+                <div class="social-username">@kamola_463</div>
+            </div>
+            
+            <!-- المجموعة الثانية: بطاقتين -->
+            <div class="social-card" data-name="تيليجرام" data-link="https://t.me/ou_kamel" data-icon="telegram" data-type="social">
+                <div class="social-icon telegram"><i class="fab fa-telegram-plane"></i></div>
+                <div class="social-name">تيليجرام</div>
+                <div class="social-username">@ou_kamel</div>
+            </div>
+            
+            <div class="social-card" data-name="سناب شات" data-link="https://www.snapchat.com/add/kamola252903" data-icon="snapchat" data-type="social">
+                <div class="social-icon snapchat"><i class="fab fa-snapchat-ghost"></i></div>
+                <div class="social-name">سناب شات</div>
+                <div class="social-username">kamola252903</div>
+            </div>
+            
+            <!-- المجموعة الثالثة: بطاقتين -->
+            <div class="social-card" data-name="تيك توك" data-link="https://www.tiktok.com/@kamola.3017" data-icon="tiktok" data-type="social">
+                <div class="social-icon tiktok"><i class="fab fa-tiktok"></i></div>
+                <div class="social-name">تيك توك</div>
+                <div class="social-username">@kamola.3017</div>
+            </div>
+            
+            <div class="social-card" data-name="يوتيوب" data-link="https://www.youtube.com/@kamola3017" data-icon="youtube" data-type="social">
+                <div class="social-icon youtube"><i class="fab fa-youtube"></i></div>
+                <div class="social-name">يوتيوب</div>
+                <div class="social-username">@kamola3017</div>
+            </div>
+            
+            <!-- المجموعة الرابعة: بطاقتين -->
+            <div class="social-card" data-name="تويتر" data-link="https://x.com/3017Kamola44307?t=107y45_c29JA1E-ClTzg_A&s=09" data-icon="twitter" data-type="social">
+                <div class="social-icon twitter"><i class="fab fa-twitter"></i></div>
+                <div class="social-name">تويتر</div>
+                <div class="social-username">@3017Kamola44307</div>
+            </div>
+            
+            <div class="social-card" data-name="البريد الإلكتروني" data-link="mailto:magnom3017@gmail.com" data-icon="email" data-type="email">
+                <div class="social-icon email"><i class="fas fa-envelope"></i></div>
+                <div class="social-name">البريد الإلكتروني</div>
+                <div class="social-username">magnom3017@gmail.com</div>
+            </div>
+            
+            <!-- المجموعة الخامسة: بطاقة واحدة واسعة -->
+            <div class="social-card" data-name="رقم الهاتف" data-link="tel:+213776274508" data-icon="phone" data-type="phone">
+                <div class="social-icon phone"><i class="fas fa-phone"></i></div>
+                <div class="social-name">رقم الهاتف</div>
+                <div class="social-username">+213 776 274508</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة المشاركة -->
+    <div class="share-modal" id="shareModal">
+        <button class="close-share" id="closeShareBtn"><i class="fas fa-times"></i></button>
+        <div class="share-content" id="shareContent">
+            <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
     
     <script>
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -817,7 +805,6 @@
                 setupModalContent(type, link, name, iconClass);
                 shareModal.style.display = 'flex';
                 
-                // تأثير اهتزاز للبطاقة
                 card.style.animation = 'none';
                 setTimeout(() => {
                     card.style.animation = '';
@@ -1037,7 +1024,6 @@
             notification.textContent = message;
             notification.classList.add('show');
             
-            // تأثير اهتزاز خفيف
             notification.style.animation = 'none';
             setTimeout(() => {
                 notification.style.animation = 'pulse 0.5s';
@@ -1048,13 +1034,11 @@
             }, 3000);
         }
         
-        // إضافة تأثيرات إضافية عند التحميل
         window.addEventListener('load', () => {
             document.querySelectorAll('.social-card').forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });
             
-            // تأثير ظهور تدريجي للبطاقات
             setTimeout(() => {
                 document.querySelectorAll('.social-card').forEach(card => {
                     card.style.opacity = '1';
