@@ -93,7 +93,7 @@
             transform: translateY(-5px);
         }
         
-        /* شبكة البطاقات - صفين */
+        /* ✅ شبكة البطاقات - صفين أفقيين */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -107,7 +107,7 @@
             }
         }
         
-        /* تصميم البطاقات ثلاثية الأبعاد */
+        /* ✅ تصميم البطاقات ثلاثية الأبعاد */
         .social-card {
             background: var(--card-light);
             border-radius: 20px;
@@ -126,7 +126,7 @@
             animation: float 6s ease-in-out infinite;
         }
         
-        /* حركة الطفو المختلفة لكل بطاقة */
+        /* ✅ حركة الطفو */
         .social-card:nth-child(odd) {
             animation-delay: 0s;
         }
@@ -156,7 +156,7 @@
             border-color: var(--primary);
         }
         
-        /* الأيقونات ثلاثية الأبعاد */
+        /* ✅ الأيقونات ثلاثية الأبعاد */
         .social-icon {
             width: 80px;
             height: 80px;
@@ -214,7 +214,7 @@
             background: rgba(255,255,255,0.1);
         }
         
-        /* ألوان وسائل التواصل */
+        /* ✅ ألوان وسائل التواصل */
         .facebook { background: linear-gradient(135deg, #1877F2, #0D5FBF); }
         .instagram { background: linear-gradient(135deg, #E4405F, #C13584); }
         .telegram { background: linear-gradient(135deg, #0088CC, #006699); }
@@ -378,64 +378,56 @@
             </div>
         </div>
         
+        <!-- ✅ البطاقات مرتبة بعمودين -->
         <div class="social-grid">
-            <!-- فيسبوك -->
             <div class="social-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook" data-type="social">
                 <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
                 <div class="social-name">فيسبوك</div>
                 <div class="social-username">Kamola</div>
             </div>
             
-            <!-- إنستغرام -->
             <div class="social-card" data-name="إنستغرام" data-link="https://www.instagram.com/kamola_463" data-icon="instagram" data-type="social">
                 <div class="social-icon instagram"><i class="fab fa-instagram"></i></div>
                 <div class="social-name">إنستغرام</div>
                 <div class="social-username">@kamola_463</div>
             </div>
             
-            <!-- تيليجرام -->
             <div class="social-card" data-name="تيليجرام" data-link="https://t.me/ou_kamel" data-icon="telegram" data-type="social">
                 <div class="social-icon telegram"><i class="fab fa-telegram-plane"></i></div>
                 <div class="social-name">تيليجرام</div>
                 <div class="social-username">@ou_kamel</div>
             </div>
             
-            <!-- سناب شات -->
             <div class="social-card" data-name="سناب شات" data-link="https://www.snapchat.com/add/kamola252903" data-icon="snapchat" data-type="social">
                 <div class="social-icon snapchat"><i class="fab fa-snapchat-ghost"></i></div>
                 <div class="social-name">سناب شات</div>
                 <div class="social-username">kamola252903</div>
             </div>
             
-            <!-- تيك توك -->
             <div class="social-card" data-name="تيك توك" data-link="https://www.tiktok.com/@kamola.3017" data-icon="tiktok" data-type="social">
                 <div class="social-icon tiktok"><i class="fab fa-tiktok"></i></div>
                 <div class="social-name">تيك توك</div>
                 <div class="social-username">@kamola.3017</div>
             </div>
             
-            <!-- يوتيوب -->
             <div class="social-card" data-name="يوتيوب" data-link="https://www.youtube.com/@kamola3017" data-icon="youtube" data-type="social">
                 <div class="social-icon youtube"><i class="fab fa-youtube"></i></div>
                 <div class="social-name">يوتيوب</div>
                 <div class="social-username">@kamola3017</div>
             </div>
             
-            <!-- تويتر -->
             <div class="social-card" data-name="تويتر" data-link="https://x.com/3017Kamola44307?t=107y45_c29JA1E-ClTzg_A&s=09" data-icon="twitter" data-type="social">
                 <div class="social-icon twitter"><i class="fab fa-twitter"></i></div>
                 <div class="social-name">تويتر</div>
                 <div class="social-username">@3017Kamola44307</div>
             </div>
             
-            <!-- البريد الإلكتروني -->
             <div class="social-card" data-name="البريد الإلكتروني" data-link="mailto:magnom3017@gmail.com" data-icon="email" data-type="email">
                 <div class="social-icon email"><i class="fas fa-envelope"></i></div>
                 <div class="social-name">البريد الإلكتروني</div>
                 <div class="social-username">magnom3017@gmail.com</div>
             </div>
             
-            <!-- رقم الهاتف -->
             <div class="social-card" data-name="رقم الهاتف" data-link="tel:+962776274508" data-icon="phone" data-type="phone">
                 <div class="social-icon phone"><i class="fas fa-phone"></i></div>
                 <div class="social-name">رقم الهاتف</div>
@@ -449,17 +441,13 @@
         <button class="close-share" id="closeShareBtn"><i class="fas fa-times"></i></button>
         <div class="share-content" id="shareContent">
             <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
-            <div id="modalContent">
-                <!-- المحتوى سيتم إضافته ديناميكياً -->
-            </div>
+            <div id="modalContent"></div>
         </div>
     </div>
     
-    <!-- إشعارات -->
     <div class="notification" id="notification"></div>
     
     <script>
-        // الوضع المظلم
         const darkModeToggle = document.getElementById('darkModeToggle');
         const body = document.body;
         
@@ -473,7 +461,6 @@
             }
         });
         
-        // نافذة المشاركة
         const shareModal = document.getElementById('shareModal');
         const modalAppName = document.getElementById('modalAppName');
         const modalContent = document.getElementById('modalContent');
@@ -482,7 +469,6 @@
         
         let currentQRCode = null;
         
-        // فتح النافذة عند النقر على البطاقات
         document.querySelectorAll('.social-card').forEach(card => {
             card.addEventListener('click', () => {
                 const name = card.getAttribute('data-name');
@@ -491,10 +477,7 @@
                 const iconClass = card.querySelector('.social-icon i').className;
                 
                 modalAppName.textContent = name;
-                
-                // إعداد المحتوى حسب النوع
                 setupModalContent(type, link, name, iconClass);
-                
                 shareModal.style.display = 'flex';
             });
         });
@@ -503,9 +486,7 @@
             modalContent.innerHTML = '';
             
             if (type === 'phone') {
-                // واجهة الهاتف
                 const phoneNumber = link.replace('tel:', '');
-                
                 const phoneInfo = document.createElement('div');
                 phoneInfo.className = 'social-username';
                 phoneInfo.style.color = 'white';
@@ -537,9 +518,7 @@
                 modalContent.appendChild(buttonsDiv);
                 
             } else if (type === 'email') {
-                // واجهة البريد الإلكتروني
                 const email = link.replace('mailto:', '');
-                
                 const emailInfo = document.createElement('div');
                 emailInfo.className = 'social-username';
                 emailInfo.style.color = 'white';
@@ -571,16 +550,13 @@
                 modalContent.appendChild(buttonsDiv);
                 
             } else {
-                // واجهة وسائل التواصل
                 const qrContainer = document.createElement('div');
                 qrContainer.className = 'qr-container';
-                
                 const qrCodeDiv = document.createElement('div');
                 qrCodeDiv.id = 'modalQRCode';
                 qrContainer.appendChild(qrCodeDiv);
                 modalContent.appendChild(qrContainer);
                 
-                // إنشاء QR Code مع أيقونة التطبيق
                 setTimeout(() => {
                     qrCodeDiv.innerHTML = '';
                     currentQRCode = new QRCode(qrCodeDiv, {
@@ -591,7 +567,6 @@
                         colorLight: "#ffffff"
                     });
                     
-                    // إضافة أيقونة التطبيق في الوسط
                     const appIcon = document.createElement('div');
                     appIcon.style.position = 'absolute';
                     appIcon.style.top = '50%';
@@ -608,8 +583,6 @@
                     
                     const iconElement = document.createElement('i');
                     iconElement.className = iconClass;
-                    
-                    // تحديد لون الأيقونة حسب النوع
                     if (iconClass.includes('facebook')) iconElement.style.color = '#1877F2';
                     else if (iconClass.includes('instagram')) iconElement.style.color = '#E4405F';
                     else if (iconClass.includes('telegram')) iconElement.style.color = '#0088CC';
@@ -624,6 +597,7 @@
                 
                 const buttonsDiv = document.createElement('div');
                 buttonsDiv.className = 'action-buttons';
+                buttonsDiv.style.gridTemplateColumns = 'repeat(3, 1fr)';
                 
                 const downloadBtn = document.createElement('button');
                 downloadBtn.className = 'action-btn download-btn';
@@ -643,27 +617,25 @@
                 
                 const copyBtn = document.createElement('button');
                 copyBtn.className = 'action-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ الرابط';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ';
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(link).then(() => {
-                        showNotification('تم نسخ الرابط بنجاح');
+                        showNotification('تم نسخ الرابط');
                     });
                 };
                 
                 const openBtn = document.createElement('button');
                 openBtn.className = 'action-btn open-btn';
-                openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> فتح التطبيق';
+                openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> فتح';
                 openBtn.onclick = () => window.open(link, '_blank');
                 
                 buttonsDiv.appendChild(downloadBtn);
                 buttonsDiv.appendChild(copyBtn);
                 buttonsDiv.appendChild(openBtn);
-                
                 modalContent.appendChild(buttonsDiv);
             }
         }
         
-        // إغلاق النافذة
         closeShareBtn.addEventListener('click', () => {
             shareModal.style.display = 'none';
         });
@@ -674,7 +646,6 @@
             }
         });
         
-        // زر المشاركة في الهيدر
         document.getElementById('shareBtn').addEventListener('click', () => {
             if (navigator.share) {
                 navigator.share({
@@ -689,38 +660,13 @@
             }
         });
         
-        // وظيفة الإشعارات
         function showNotification(message) {
             notification.textContent = message;
             notification.classList.add('show');
-            
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
         }
-        
-        // تأثيرات ثلاثية الأبعاد للبطاقات
-        document.addEventListener('mousemove', (e) => {
-            const cards = document.querySelectorAll('.social-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateY = (x - centerX) / 20;
-                const rotateX = (centerY - y) / 20;
-                
-                card.style.transform = `
-                    perspective(1000px) 
-                    rotateX(${rotateX}deg) 
-                    rotateY(${rotateY}deg)
-                    translateY(${Math.sin(Date.now() / 1000) * 5}px)
-                `;
-            });
-        });
     </script>
 </body>
 </html>
