@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Øu••ᵏᵃᵐᵃˡ࿐ - Social Media</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- QR Code Generator Library -->
+<script src="https://cdn.jsdelivr.net/npm/davidshimjs-qrcodejs@0.0.2/qrcode.min.js"></script> [web:16]
 <style>
+/* الكود CSS الحالي يبقى كما هو */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
 :root{
 --primary:#8B5CF6;
@@ -81,7 +84,7 @@ body.dark-mode{
 }
 .share-title{color:white;font-size:24px;margin-bottom:25px;font-weight:700;}
 .qrcode-container{background:white;padding:20px;border-radius:15px;margin:20px 0;display:inline-block;}
-.qrcode-placeholder{width:200px;height:200px;background:linear-gradient(45deg,#E2E8F0,#CBD5E0);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#64748B;font-weight:600;}
+#modalQRCode{width:200px;height:200px;background:linear-gradient(45deg,#E2E8F0,#CBD5E0);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#64748B;font-weight:600;}
 .share-buttons{display:flex;gap:15px;justify-content:center;margin-top:25px;}
 .share-btn{flex:1;padding:15px;border:none;border-radius:12px;font-weight:600;cursor:pointer;transition:all 0.3s ease;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;}
 .download-btn{background:var(--primary);color:white;}
@@ -110,7 +113,7 @@ body.dark-mode{
 </div>
 </div>
 <div class="social-grid">
-<!-- البطاقات -->
+<!-- البطاقات تبقى كما هي -->
 <div class="social-card" data-name="فيسبوك" data-link="https://www.facebook.com/share/1BgY11DMQM/" data-icon="facebook">
 <div class="social-icon facebook"><i class="fab fa-facebook-f"></i></div>
 <div class="social-name">فيسبوك</div>
@@ -165,10 +168,10 @@ body.dark-mode{
 <div class="share-content">
 <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
 <div class="qrcode-container">
-<div class="qrcode-placeholder" id="modalQRCode">QR Code</div>
+<canvas id="modalQRCode"></canvas> <!-- تغيير من div إلى canvas -->
 </div>
 <div class="share-buttons">
-<button class="share-btn download-btn" onclick="downloadQR()"><i class="fas fa-download"></i> تحميل</button>
+<button class="share-btn download-btn" id="downloadQRBtn"><i class="fas fa-download"></i> تحميل</button>
 <button class="share-btn copy-btn" id="copyLinkBtn"><i class="fas fa-copy"></i> نسخ</button>
 <button class="share-btn share-app-btn" id="openAppBtn"><i class="fas fa-share"></i> فتح التطبيق</button>
 </div>
@@ -191,6 +194,11 @@ const modalQRCode=document.getElementById('modalQRCode');
 const copyLinkBtn=document.getElementById('copyLinkBtn');
 const openAppBtn=document.getElementById('openAppBtn');
 const closeShareBtn=document.getElementById('closeShareBtn');
+const downloadQRBtn=document.getElementById('downloadQRBtn');
+
+// متغير لتخزين QRCode instance والرابط الحالي
+let currentQRCode = null;
+let currentLink = '';
 
 // فتح نافذة عند النقر على بطاقة
 document.querySelectorAll('.social-card').forEach(card=>{
@@ -199,14 +207,52 @@ document.querySelectorAll('.social-card').forEach(card=>{
         const link=card.getAttribute('data-link');
 
         modalAppName.textContent=name;
-        modalQRCode.textContent='QR Code';
+        currentLink = link;
+        
+        // إنشاء QR Code حقيقي
+        generateQRCode(link);
+        
+        // تعيين وظائف الأزرار
         copyLinkBtn.onclick=()=>{navigator.clipboard.writeText(link).then(()=>alert(`تم نسخ الرابط: ${link}`));};
         openAppBtn.onclick=()=>{window.open(link,'_blank');};
 
         shareModal.style.display='flex';
-        body.style.overflow='hidden'; // منع تمرير الخلفية
+        body.style.overflow='hidden';
         history.pushState({modalOpen:true},'',window.location.href);
     });
+});
+
+// وظيفة إنشاء QR Code
+function generateQRCode(url) {
+    const qrElement = document.getElementById('modalQRCode');
+    
+    // مسح QR Code السابق
+    if (currentQRCode) {
+        currentQRCode.clear();
+    }
+    
+    // إنشاء QR Code جديد
+    currentQRCode = new QRCode(qrElement, {
+        text: url,
+        width: 200,
+        height: 200,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    }); [web:4][web:2]
+}
+
+// تحميل QR Code كصورة
+downloadQRBtn.addEventListener('click', function() {
+    if (currentQRCode) {
+        const qrCanvas = modalQRCode.querySelector('canvas');
+        const link = document.createElement('a');
+        link.download = `QR-${modalAppName.textContent}.png`;
+        link.href = qrCanvas.toDataURL();
+        link.click(); [web:24]
+    } else {
+        alert('يرجى اختيار تطبيق أولاً');
+    }
 });
 
 // زر الإغلاق ×
@@ -232,9 +278,6 @@ window.addEventListener('popstate',e=>{
         body.style.overflow='';
     }
 });
-
-// وظيفة تحميل QR
-function downloadQR(){alert('سيتم تحميل صورة QR Code');}
 </script>
 </body>
 </html>
