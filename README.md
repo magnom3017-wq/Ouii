@@ -79,7 +79,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease;
+            transition: transform 0.3s ease;
             color: var(--primary);
             font-size: 20px;
         }
@@ -90,14 +90,14 @@
         }
         
         .icon-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
         }
         
         /* شبكة البطاقات - صفين */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 25px;
             margin-top: 20px;
         }
         
@@ -107,18 +107,41 @@
             }
         }
         
-        /* تصميم البطاقات المبسط */
+        /* تصميم البطاقات ثلاثية الأبعاد */
         .social-card {
             background: var(--card-light);
-            border-radius: 15px;
-            padding: 25px 20px;
+            border-radius: 20px;
+            padding: 30px 25px;
             text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.1),
+                0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* حركة الطفو المختلفة لكل بطاقة */
+        .social-card:nth-child(odd) {
+            animation-delay: 0s;
+        }
+        
+        .social-card:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotateX(0) rotateY(0); 
+            }
+            50% { 
+                transform: translateY(-15px) rotateX(5deg) rotateY(5deg); 
+            }
         }
         
         .dark-mode .social-card {
@@ -126,44 +149,69 @@
         }
         
         .social-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-20px) rotateX(10deg) rotateY(10deg) scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.2),
+                0 0 30px rgba(139, 92, 246, 0.3);
             border-color: var(--primary);
         }
         
-        /* الأيقونات */
+        /* الأيقونات ثلاثية الأبعاد */
         .social-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 30px;
+            margin: 0 auto 20px;
+            font-size: 35px;
             color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 
+                0 10px 20px rgba(0,0,0,0.2),
+                inset 0 3px 10px rgba(255,255,255,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(20px);
         }
         
         .social-card:hover .social-icon {
-            transform: scale(1.1);
+            transform: translateZ(40px) scale(1.2) rotateY(180deg);
+            box-shadow: 
+                0 15px 30px rgba(0,0,0,0.3),
+                inset 0 5px 15px rgba(255,255,255,0.4);
+        }
+        
+        .social-icon i {
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         
         .social-name {
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transform: translateZ(10px);
         }
         
         .social-username {
             color: #64748B;
             font-size: 14px;
             direction: ltr;
+            background: rgba(0,0,0,0.05);
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 5px;
+            transform: translateZ(5px);
         }
         
         .dark-mode .social-username {
             color: #94A3B8;
+            background: rgba(255,255,255,0.1);
         }
         
         /* ألوان وسائل التواصل */
@@ -177,7 +225,7 @@
         .email { background: linear-gradient(135deg, #EA4335, #D14836); }
         .phone { background: linear-gradient(135deg, #34A853, #2E8B57); }
         
-        /* النافذة المنبثقة المبسطة */
+        /* النافذة المنبثقة */
         .share-modal {
             display: none;
             position: fixed;
@@ -185,37 +233,57 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 9999;
             align-items: center;
             justify-content: center;
         }
         
         .share-content {
-            background: var(--darker);
-            border-radius: 20px;
-            padding: 30px;
+            background: linear-gradient(135deg, 
+                rgba(20, 20, 40, 0.95), 
+                rgba(30, 30, 60, 0.95));
+            border-radius: 25px;
+            padding: 40px;
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(139, 92, 246, 0.3);
             border: 2px solid var(--primary);
             position: relative;
+            animation: modalAppear 0.5s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            0% { transform: scale(0.8) translateY(50px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
         }
         
         .share-title {
             color: white;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            margin-bottom: 25px;
             font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .qr-container {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
             margin: 20px 0;
             display: inline-block;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         
         #modalQRCode {
@@ -227,54 +295,69 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .action-btn {
-            padding: 12px;
+            padding: 15px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 14px;
+            gap: 10px;
+            font-size: 16px;
             color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        
-        .download-btn { background: var(--primary); }
-        .copy-btn { background: var(--accent); }
-        .call-btn { background: #34A853; }
-        .email-btn { background: #EA4335; }
         
         .action-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
+        
+        .download-btn { background: linear-gradient(135deg, var(--primary), #7c3aed); }
+        .copy-btn { background: linear-gradient(135deg, var(--accent), #d12e5a); }
+        .call-btn { background: linear-gradient(135deg, #34A853, #2E8B57); }
+        .email-btn { background: linear-gradient(135deg, #EA4335, #D14836); }
+        .open-btn { background: linear-gradient(135deg, var(--secondary), #05b887); }
         
         .close-share {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background: none;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, var(--accent), #d12e5a);
             border: none;
             color: white;
             font-size: 20px;
             cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
         }
         
-        /* إشعارات بسيطة */
+        .close-share:hover {
+            transform: rotate(90deg);
+        }
+        
+        /* إشعارات */
         .notification {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             z-index: 10000;
             transform: translateY(100px);
             transition: transform 0.3s ease;
@@ -364,7 +447,7 @@
     <!-- نافذة المشاركة -->
     <div class="share-modal" id="shareModal">
         <button class="close-share" id="closeShareBtn"><i class="fas fa-times"></i></button>
-        <div class="share-content">
+        <div class="share-content" id="shareContent">
             <h2 class="share-title" id="modalAppName">اسم التطبيق</h2>
             <div id="modalContent">
                 <!-- المحتوى سيتم إضافته ديناميكياً -->
@@ -405,17 +488,18 @@
                 const name = card.getAttribute('data-name');
                 const link = card.getAttribute('data-link');
                 const type = card.getAttribute('data-type');
+                const iconClass = card.querySelector('.social-icon i').className;
                 
                 modalAppName.textContent = name;
                 
                 // إعداد المحتوى حسب النوع
-                setupModalContent(type, link, name);
+                setupModalContent(type, link, name, iconClass);
                 
                 shareModal.style.display = 'flex';
             });
         });
         
-        function setupModalContent(type, link, name) {
+        function setupModalContent(type, link, name, iconClass) {
             modalContent.innerHTML = '';
             
             if (type === 'phone') {
@@ -426,7 +510,8 @@
                 phoneInfo.className = 'social-username';
                 phoneInfo.style.color = 'white';
                 phoneInfo.style.margin = '20px 0';
-                phoneInfo.style.fontSize = '18px';
+                phoneInfo.style.fontSize = '20px';
+                phoneInfo.style.fontWeight = 'bold';
                 phoneInfo.textContent = phoneNumber;
                 modalContent.appendChild(phoneInfo);
                 
@@ -440,7 +525,7 @@
                 
                 const copyBtn = document.createElement('button');
                 copyBtn.className = 'action-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ الرقم';
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(phoneNumber).then(() => {
                         showNotification('تم نسخ الرقم بنجاح');
@@ -459,7 +544,8 @@
                 emailInfo.className = 'social-username';
                 emailInfo.style.color = 'white';
                 emailInfo.style.margin = '20px 0';
-                emailInfo.style.fontSize = '18px';
+                emailInfo.style.fontSize = '20px';
+                emailInfo.style.fontWeight = 'bold';
                 emailInfo.textContent = email;
                 modalContent.appendChild(emailInfo);
                 
@@ -468,12 +554,12 @@
                 
                 const emailBtn = document.createElement('button');
                 emailBtn.className = 'action-btn email-btn';
-                emailBtn.innerHTML = '<i class="fas fa-envelope"></i> إرسال';
+                emailBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال بريد';
                 emailBtn.onclick = () => window.location.href = link;
                 
                 const copyBtn = document.createElement('button');
                 copyBtn.className = 'action-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ البريد';
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(email).then(() => {
                         showNotification('تم نسخ البريد بنجاح');
@@ -494,18 +580,47 @@
                 qrContainer.appendChild(qrCodeDiv);
                 modalContent.appendChild(qrContainer);
                 
-                // إنشاء QR Code
-                if (currentQRCode) {
-                    currentQRCode.clear();
-                }
-                
-                currentQRCode = new QRCode(qrCodeDiv, {
-                    text: link,
-                    width: 200,
-                    height: 200,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff"
-                });
+                // إنشاء QR Code مع أيقونة التطبيق
+                setTimeout(() => {
+                    qrCodeDiv.innerHTML = '';
+                    currentQRCode = new QRCode(qrCodeDiv, {
+                        text: link,
+                        width: 200,
+                        height: 200,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff"
+                    });
+                    
+                    // إضافة أيقونة التطبيق في الوسط
+                    const appIcon = document.createElement('div');
+                    appIcon.style.position = 'absolute';
+                    appIcon.style.top = '50%';
+                    appIcon.style.left = '50%';
+                    appIcon.style.transform = 'translate(-50%, -50%)';
+                    appIcon.style.width = '40px';
+                    appIcon.style.height = '40px';
+                    appIcon.style.background = 'white';
+                    appIcon.style.borderRadius = '8px';
+                    appIcon.style.display = 'flex';
+                    appIcon.style.alignItems = 'center';
+                    appIcon.style.justifyContent = 'center';
+                    appIcon.style.fontSize = '20px';
+                    
+                    const iconElement = document.createElement('i');
+                    iconElement.className = iconClass;
+                    
+                    // تحديد لون الأيقونة حسب النوع
+                    if (iconClass.includes('facebook')) iconElement.style.color = '#1877F2';
+                    else if (iconClass.includes('instagram')) iconElement.style.color = '#E4405F';
+                    else if (iconClass.includes('telegram')) iconElement.style.color = '#0088CC';
+                    else if (iconClass.includes('snapchat')) iconElement.style.color = '#FFFC00';
+                    else if (iconClass.includes('tiktok')) iconElement.style.color = '#000000';
+                    else if (iconClass.includes('youtube')) iconElement.style.color = '#FF0000';
+                    else if (iconClass.includes('twitter')) iconElement.style.color = '#1DA1F2';
+                    
+                    appIcon.appendChild(iconElement);
+                    qrCodeDiv.appendChild(appIcon);
+                }, 100);
                 
                 const buttonsDiv = document.createElement('div');
                 buttonsDiv.className = 'action-buttons';
@@ -514,19 +629,21 @@
                 downloadBtn.className = 'action-btn download-btn';
                 downloadBtn.innerHTML = '<i class="fas fa-download"></i> تحميل';
                 downloadBtn.onclick = () => {
-                    const canvas = qrCodeDiv.querySelector('canvas');
-                    if (canvas) {
-                        const linkEl = document.createElement('a');
-                        linkEl.download = `qrcode-${name}.png`;
-                        linkEl.href = canvas.toDataURL();
-                        linkEl.click();
-                        showNotification('تم تحميل QR Code');
-                    }
+                    setTimeout(() => {
+                        const canvas = qrCodeDiv.querySelector('canvas');
+                        if (canvas) {
+                            const linkEl = document.createElement('a');
+                            linkEl.download = `qrcode-${name}.png`;
+                            linkEl.href = canvas.toDataURL();
+                            linkEl.click();
+                            showNotification('تم تحميل QR Code');
+                        }
+                    }, 500);
                 };
                 
                 const copyBtn = document.createElement('button');
                 copyBtn.className = 'action-btn copy-btn';
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> نسخ الرابط';
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(link).then(() => {
                         showNotification('تم نسخ الرابط بنجاح');
@@ -534,32 +651,13 @@
                 };
                 
                 const openBtn = document.createElement('button');
-                openBtn.className = 'action-btn';
-                openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> فتح';
-                openBtn.style.background = 'var(--secondary)';
+                openBtn.className = 'action-btn open-btn';
+                openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i> فتح التطبيق';
                 openBtn.onclick = () => window.open(link, '_blank');
                 
                 buttonsDiv.appendChild(downloadBtn);
                 buttonsDiv.appendChild(copyBtn);
-                
-                if (type === 'social') {
-                    const socialBtn = document.createElement('button');
-                    socialBtn.className = 'action-btn';
-                    socialBtn.innerHTML = '<i class="fas fa-share"></i> مشاركة';
-                    socialBtn.style.background = '#FF9800';
-                    socialBtn.onclick = () => {
-                        if (navigator.share) {
-                            navigator.share({
-                                title: name,
-                                text: `تابعني على ${name}`,
-                                url: link
-                            });
-                        }
-                    };
-                    buttonsDiv.appendChild(socialBtn);
-                } else {
-                    buttonsDiv.appendChild(openBtn);
-                }
+                buttonsDiv.appendChild(openBtn);
                 
                 modalContent.appendChild(buttonsDiv);
             }
@@ -601,10 +699,27 @@
             }, 3000);
         }
         
-        // تحسين الأداء: إزالة تأثيرات الماوس الثقيلة
-        document.addEventListener('DOMContentLoaded', () => {
-            // تم إزالة جميع التأثيرات الثقيلة
-            console.log('الموقع محسّن للأداء ✓');
+        // تأثيرات ثلاثية الأبعاد للبطاقات
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.social-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateY = (x - centerX) / 20;
+                const rotateX = (centerY - y) / 20;
+                
+                card.style.transform = `
+                    perspective(1000px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg)
+                    translateY(${Math.sin(Date.now() / 1000) * 5}px)
+                `;
+            });
         });
     </script>
 </body>
